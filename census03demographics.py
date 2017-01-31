@@ -59,9 +59,9 @@ states = {'AK':'Alaska',
         'PR':'Puerto Rico'}
 
 for state in states:
-    outpath = os.path.join(outfolder, state.lower() + "2010.dp.zip")
+    outpath = os.path.join(outfolder, state.lower() + "20101.dp.zip")
     if os.path.exists(outpath) != True:
-        url = server + states[state].replace(" ","_") + "/" + state.lower() + "2010.dp.zip"
+        url = server + states[state].replace(" ","_") + "/" + state.lower() + "20101.dp.zip"
         print url
         response = urllib2.urlopen(url)
         zipcontent= response.read()
