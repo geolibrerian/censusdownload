@@ -1,5 +1,5 @@
 
-server = "http://www2.census.gov/acs2013_5yr/summaryfile/2009-2013_ACSSF_By_State_All_Tables/"
+server = "https://www2.census.gov/programs-surveys/acs/summary_file/2015/data/5_year_seq_by_state/"
 
 import urllib2,os
 
@@ -54,24 +54,36 @@ states = {'AK':'Alaska',
         'WI':'Wisconsin',
         'WV':'West Virginia',
         'WY':'Wyoming',
-        "PR": 'Puerto Rico',
-        "US": 'United States'
+        'PR': 'Puerto Rico',
+        'US': 'United States'
           }
-
-types = ["_All_Geographies_Not_Tracts_Block_Groups", "_Tracts_Block_Groups_Only"]
+folders = ["All_Geographies_Not_Tracts_Block_Groups", "Tracts_Block_Groups_Only"]
 
 for code, state in states.iteritems():
-    for datatype in types:
-        state = state.replace(" ","")
-        outpath = os.path.join("C:/data",  state+ datatype + "_2015_5yr_summary.zip")
-        if os.path.exists(outpath) != True:
-            url = server +  state + datatype + ".zip"
-            print url
-            response = urllib2.urlopen(url)
-            zipcontent= response.read()
+    for folder in folders:
+        x = 1
+        
+        while x < 200:
+            if x < 10:
+                inter = "000"
+            elif x >=10 and x < 100:
+                inter = '00'
+            elif x >=100:
+                inter = "0"
+            outpath = os.path.join("C:/data", state.replace(" ","") + folder + "_20155" + code.lower() + inter + str(x) + "000.zip")
+            if os.path.exists(outpath) != True:
+                url = server + state.replace(" ","")+"/"+ folder +"/20155" + code.lower() + inter + str(x) + "000.zip"
+                print url
+                try:
+                    response = urllib2.urlopen(url)
+                    zipcontent= response.read()
 
-        
-        
-            with open(outpath, 'w') as f:
-                f.write(zipcontent)
-                print "wrote" , outpath
+                
+                
+                    with open(outpath, 'w') as f:
+                        f.write(zipcontent)
+                        print "wrote" , outpath
+                except Exception as e:
+                    print e
+            x +=1
+ 

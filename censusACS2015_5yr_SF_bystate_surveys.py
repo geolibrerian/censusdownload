@@ -1,5 +1,5 @@
 
-server = "http://www2.census.gov/acs2013_1yr/summaryfile/2013_ACSSF_By_State_All_Tables/"
+server = "https://www2.census.gov/programs-surveys/acs/summary_file/2015/data/5_year_by_state/"
 
 import urllib2,os
 
@@ -55,16 +55,20 @@ states = {'AK':'Alaska',
 'WV':'West Virginia',
 'WY':'Wyoming'}
 
-for code, state in states.iteritems():
-    outpath = os.path.join("C:/data", state.replace(" ","") + "_2013_1yr_All_Geographies.zip")
-    if os.path.exists(outpath) != True:
-        url = server + state.replace(" ","") + "_All_Geographies.zip"
-        print url
-        response = urllib2.urlopen(url)
-        zipcontent= response.read()
+types = ["_All_Geographies_Not_Tracts_Block_Groups", "_Tracts_Block_Groups"]
 
-    
-    
-        with open(outpath, 'w') as f:
-            f.write(zipcontent)
-            print "wrote" , outpath
+for code, state in states.iteritems():
+    for datatype in types:
+        state = state.replace(" ","")
+        outpath = os.path.join("C:/data",  state+ datatype + "_2015_5yr_summary.zip")
+        if os.path.exists(outpath) != True:
+            url = server +  state + datatype + ".zip"
+            print url
+            response = urllib2.urlopen(url)
+            zipcontent= response.read()
+
+        
+        
+            with open(outpath, 'w') as f:
+                f.write(zipcontent)
+                print "wrote" , outpath
