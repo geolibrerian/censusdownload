@@ -1,6 +1,6 @@
 
 server = "http://www2.census.gov/census_2010/05-Summary_File_2/"
-
+outfolder = "C:/data"
 import urllib2,os
 
 states = {'AK':'Alaska',
@@ -58,7 +58,7 @@ states = {'AK':'Alaska',
         'US': 'United States'}
 
 for state in states:
-    outpath = os.path.join("C:/data", state.lower() + "2010.sf2.zip")
+    outpath = os.path.join(outfolder, state.lower() + "2010.sf2.zip")
     if os.path.exists(outpath) != True:
         url = server + states[state].replace(" ","_") + "/" + state.lower() + "2010.sf2.zip"
         print url
@@ -70,3 +70,12 @@ for state in states:
         with open(outpath, 'w') as f:
             f.write(zipcontent)
             print "wrote" , outpath
+pgdb = 'http://www2.census.gov/census_2010/05-Summary_File_2/SF2_MSAccess_2007.accdb'
+response = urllib2.urlopen(pgdb)
+zipcontent= response.read()
+outpath = os.path.join(outfolder, "SF2_MSAccess_2007.accdb")
+with open(outpath, 'w') as f:
+    f.write(zipcontent)
+    print "wrote" , outpath
+
+

@@ -1,6 +1,6 @@
 
 server = "https://www2.census.gov/programs-surveys/acs/summary_file/2015/data/5_year_seq_by_state/"
-
+outfolder = "C:/data"
 import urllib2,os
 
 states = {'AK':'Alaska',
@@ -70,7 +70,7 @@ for code, state in states.iteritems():
                 inter = '00'
             elif x >=100:
                 inter = "0"
-            outpath = os.path.join("C:/data", state.replace(" ","") + folder + "_20155" + code.lower() + inter + str(x) + "000.zip")
+            outpath = os.path.join(outfolder, state.replace(" ","") + folder + "_20155" + code.lower() + inter + str(x) + "000.zip")
             if os.path.exists(outpath) != True:
                 url = server + state.replace(" ","")+"/"+ folder +"/20155" + code.lower() + inter + str(x) + "000.zip"
                 print url
