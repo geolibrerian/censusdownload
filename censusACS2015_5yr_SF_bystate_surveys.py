@@ -59,8 +59,9 @@ states = {'AK':'Alaska',
 types = ["_All_Geographies_Not_Tracts_Block_Groups", "_Tracts_Block_Groups_Only"]
 
 for code, state in states.iteritems():
+    state = state.title().replace(" ","")
     for datatype in types:
-        state = state.replace(" ","")
+        
         outpath = os.path.join(outfolder,  state+ datatype + "_2015_5yr_summary.zip")
         if os.path.exists(outpath) != True:
             url = server +  state + datatype + ".zip"
