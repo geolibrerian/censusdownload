@@ -1,6 +1,6 @@
 
 server = "http://www2.census.gov/acs2013_5yr/summaryfile/2009-2013_ACSSF_By_State_All_Tables/"
-
+outfolder = "C:/data"
 import urllib2,os
 
 states = {'AK':'Alaska',
@@ -61,9 +61,10 @@ states = {'AK':'Alaska',
 types = ["_All_Geographies_Not_Tracts_Block_Groups", "_Tracts_Block_Groups_Only"]
 
 for code, state in states.iteritems():
+    state = state.title().replace(" ","")
     for datatype in types:
-        state = state.replace(" ","")
-        outpath = os.path.join("C:/data",  state+ datatype + "_2015_5yr_summary.zip")
+        
+        outpath = os.path.join(outfolder,  state+ datatype + "_2015_5yr_summary.zip")
         if os.path.exists(outpath) != True:
             url = server +  state + datatype + ".zip"
             print url

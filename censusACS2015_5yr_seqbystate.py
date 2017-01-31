@@ -63,7 +63,7 @@ for code, state in states.iteritems():
     for folder in folders:
         x = 1
         
-        while x < 200:
+        while x < 123:
             if x < 10:
                 inter = "000"
             elif x >=10 and x < 100:
