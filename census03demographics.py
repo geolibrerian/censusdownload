@@ -68,7 +68,7 @@ for state in states:
 
     
     
-        with open(outpath, 'w') as f:
+        with open(outpath, 'wb') as f:
             f.write(zipcontent)
             print "wrote" , outpath
 
@@ -76,6 +76,6 @@ pgdb = 'http://www2.census.gov/census_2010/03-Demographic_Profile_with_SF1geos/D
 response = urllib2.urlopen(pgdb)
 zipcontent= response.read()
 outpath = os.path.join(outfolder, "DPSF2010_Access.accdb")
-with open(outpath, 'w') as f:
+with open(outpath, 'wb') as f:
     f.write(zipcontent)
     print "wrote" , outpath

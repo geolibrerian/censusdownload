@@ -80,7 +80,7 @@ for code, state in states.iteritems():
 
                 
                 
-                    with open(outpath, 'w') as f:
+                    with open(outpath, 'wb') as f:
                         f.write(zipcontent)
                         print "wrote" , outpath
                 except Exception as e:

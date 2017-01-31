@@ -66,13 +66,13 @@ for state in states:
 
     
     
-        with open(outpath, 'w') as f:
+        with open(outpath, 'wb') as f:
             f.write(zipcontent)
             print "wrote" , outpath
 pgdb = 'http://www2.census.gov/census_2010/08-SF1_Congressional_Districts_113/SF1_Access2007_v2.accdb'
 response = urllib2.urlopen(pgdb)
 zipcontent= response.read()
 outpath = os.path.join(outfolder, "SF1_Access2007.accdb")
-with open(outpath, 'w') as f:
+with open(outpath, 'wb') as f:
     f.write(zipcontent)
     print "wrote" , outpath
